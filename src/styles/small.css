@@ -131,7 +131,6 @@
 }
 
 .hero {
-  /* height: 400px; */
   position: relative;
 }
 
@@ -155,9 +154,6 @@
 }
 
 .hero img {
-  /* position: absolute;
-    top: 0;
-    left: 0; */
   width: 100%;
   filter: brightness(0.2) sepia(0.5) saturate(0.5);
 
