@@ -35,7 +35,6 @@
   border: solid 1px #ffffff;
   border-radius: 100px;
   transition: all ease 0.3s;
-  height: 40px;
   display: grid;
   place-items: center;
 }
