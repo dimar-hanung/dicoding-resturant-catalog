@@ -1,6 +1,6 @@
 # Dicoding Chellange - Katalog Restoran
 
-Fitur yang harus ada pada aplikasi:
+LIVE : https://dicoding-resturant-catalog.vercel.app/
 
 ## 🔍 Detail
 
