@@ -1,0 +1,68 @@
+.navbar__toggle-btn {
+  display: none;
+}
+
+.hero .content hr {
+  margin: 0.75rem 0;
+}
+
+.container {
+  position: relative;
+}
+
+.navbar {
+  all: unset;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  padding: 1rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+.navbar ul {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: end;
+}
+
+.navbar ul li {
+  all: unset;
+  padding: 0 1rem;
+  border: solid 1px #ffffff;
+  border-radius: 100px;
+  transition: all ease 0.3s;
+  height: 40px;
+  display: grid;
+  place-items: center;
+}
+
+.navbar ul li:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.navbar__overlay.--active {
+  display: none !important;
+}
+
+.navbar ul li a:focus {
+  all: unset;
+  display: block;
+  background: transparent;
+  color: #e6e600;
+  text-decoration: underline;
+}
+
+#catalogListContainer {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+}
+
+.catalog {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}

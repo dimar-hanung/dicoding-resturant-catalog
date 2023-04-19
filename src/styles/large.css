@@ -1,0 +1,18 @@
+#catalogListContainer {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+
+  gap: 1.5rem;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1440px;
+  background: #161616;
+}
+
+.hero {
+  max-height: 500px;
+  overflow: hidden;
+}
