@@ -135,9 +135,31 @@ class Detail {
     <main id="catalogListContainer" class="main">Main Page</main>`;
 
     const catalogListContainer = document.getElementById('catalogListContainer');
-    const catalog = await fetchCatalog();
-    // console.log(catalog.restaurants);
-    catalogListContainer.innerHTML = createCatalogTemplate(catalog.restaurants);
+
+    const openRequest = indexedDB.open('dapurKota', 1);
+
+    openRequest.onsuccess = async (event) => {
+      const db = event.target.result;
+      const tx = db.transaction('restaurantsHeader', 'readonly');
+      const store = tx.objectStore('restaurantsHeader');
+      const data = await new Promise((resolve) => {
+        store.getAll().onsuccess = (e) => {
+          resolve(e.target.result);
+        };
+      });
+
+      console.log(data);
+      if (!data.length) {
+        catalogListContainer.innerHTML = createCatalogTemplate(data);
+      }
+      const catalog = await fetchCatalog();
+      catalog.restaurants.forEach((restaurant) => {
+        db.transaction('restaurantsHeader', 'readwrite')
+          .objectStore('restaurantsHeader')
+          .put(restaurant);
+      });
+      catalogListContainer.innerHTML = createCatalogTemplate(catalog.restaurants);
+    };
   }
 }
 

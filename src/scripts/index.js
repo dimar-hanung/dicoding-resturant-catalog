@@ -103,6 +103,21 @@ const app = new App({
 const originalPushState = window.history.pushState;
 const stateChangeEvent = new Event('statechange');
 
+// init db
+
+const openRequest = indexedDB.open('dapurKota', 1);
+openRequest.onupgradeneeded = () => {
+  const db = openRequest.result;
+  if (!db.objectStoreNames.contains('restaurantsHeader')) {
+    db.createObjectStore('restaurantsHeader', { keyPath: 'id' });
+  }
+  if (!db.objectStoreNames.contains('restaurantsDetail')) {
+    db.createObjectStore('restaurantsDetail', { keyPath: 'id' });
+  }
+};
+
+//
+
 window.history.pushState = function (state, title, url) {
   originalPushState.apply(this, arguments);
   window.dispatchEvent(stateChangeEvent);

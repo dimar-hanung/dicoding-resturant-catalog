@@ -23,12 +23,6 @@ class Detail {
     const parsedUrl = UrlParser.parseActiveUrlWithoutCombiner();
 
     const openRequest = indexedDB.open('dapurKota', 1);
-    openRequest.onupgradeneeded = (event) => {
-      const db = event.target.result;
-      if (!db.objectStoreNames.contains('restaurantsDetail')) {
-        db.createObjectStore('restaurantsDetail', { keyPath: 'id' });
-      }
-    };
 
     openRequest.onsuccess = async (event) => {
       const db = event.target.result;
