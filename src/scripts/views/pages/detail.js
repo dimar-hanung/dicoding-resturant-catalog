@@ -1,8 +1,6 @@
 import UrlParser from '../../routes/url-parser';
 import Api from '../../utils/api';
 
-const html = (str) => str[0];
-
 const fetchDetail = async (id) => {
   const response = await Api.fetch({
     url: `https://restaurant-api.dicoding.dev/detail/${id}`,
@@ -13,18 +11,63 @@ const fetchDetail = async (id) => {
   return response;
 };
 
-const Detail = {
-  data: {
-    message: 'lih',
-  },
-  async render() {
-    return `
+class Detail {
+  constructor(content) {
+    this.content = content;
+    this.data = {
+      restaurant: {},
+    };
+  }
+
+  async init() {
+    const parsedUrl = UrlParser.parseActiveUrlWithoutCombiner();
+
+    const openRequest = indexedDB.open('dapurKota', 1);
+    openRequest.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains('restaurantsDetail')) {
+        db.createObjectStore('restaurantsDetail', { keyPath: 'id' });
+      }
+    };
+
+    openRequest.onsuccess = async (event) => {
+      const db = event.target.result;
+      const restaurants = db.transaction('restaurantsDetail', 'readwrite');
+      const restaurantStore = restaurants.objectStore('restaurantsDetail');
+
+      const restaurantData = await new Promise((resolve, reject) => {
+        const r = restaurantStore.get(parsedUrl.id);
+        r.onsuccess = () => {
+          resolve(restaurantStore.result);
+        };
+        r.onerror = () => {
+          reject(new Error('Restaurant not found'));
+        };
+      });
+
+      if (restaurantData) {
+        this.data.restaurant = restaurantData;
+        this.render();
+      }
+
+      this.data = await fetchDetail(parsedUrl.id);
+
+      if (!restaurantData) {
+        db.transaction('restaurantsDetail', 'readwrite').objectStore('restaurantsDetail').put(this.data.restaurant);
+      }
+
+      this.render();
+    };
+  }
+
+  render() {
+    this.content.innerHTML = `
       <main class="main">
         
         <div class="detail__header">
           <section><img src="https://restaurant-api.dicoding.dev/images/large/${
-            this.data.restaurant.pictureId
-          }" /> </section>
+  this.data.restaurant.pictureId
+}" /> </section>
           <section id="detail">
             <h2>${this.data.restaurant.name}</h2>
             <dl>
@@ -36,8 +79,8 @@ const Detail = {
               <dd>${this.data.restaurant.rating}</dd>
               <dt>📚 Categories</dt>
               <dd>${this.data.restaurant.categories
-                .map((item) => item.name)
-                .join(', ')}</dd>
+    .map((item) => item.name)
+    .join(', ')}</dd>
               <dt>🔍 Description</dt>
               <dd>${this.data.restaurant.description}</dd>
             
@@ -56,16 +99,16 @@ const Detail = {
         <h3>🍴 Food</h3>
         <ul>
           ${this.data.restaurant.menus.foods
-            .map((item) => `<li>${item.name}</li>`)
-            .join('')}
+    .map((item) => `<li>${item.name}</li>`)
+    .join('')}
         </ul>
 
 
         <h3>🍹 Drink</h3>
         <ul>
           ${this.data.restaurant.menus.drinks
-            .map((item) => `<li>${item.name}</li>`)
-            .join('')}
+    .map((item) => `<li>${item.name}</li>`)
+    .join('')}
         </ul>
         </div>
 </section>
@@ -73,8 +116,8 @@ const Detail = {
         <h2>Review</h2>
         <div class="review__list">
         ${this.data.restaurant.customerReviews
-          .map(
-            (item) => `
+    .map(
+      (item) => `
           <div class="review__item">
             <div class="review__item__header">
               <p>${item.name}</p>
@@ -82,25 +125,21 @@ const Detail = {
             </div>
             <p>${item.review}</p>
           </div>
-        `
-          )
-          .join('')}
+        `,
+    )
+    .join('')}
         </div>
         </section>
       </main>
     `;
-  },
+  }
 
-  async beforeRender() {
-    // Fungsi ini akan dipanggil sebelum render()
-    const parsedUrl = UrlParser.parseActiveUrlWithoutCombiner();
+  // async beforeRender() {
+  //   // Fungsi ini akan dipanggil sebelum render()
+  //   const parsedUrl = UrlParser.parseActiveUrlWithoutCombiner();
 
-    this.data = await fetchDetail(parsedUrl.id);
-  },
-
-  async afterRender() {
-    return true;
-  },
-};
+  //   this.data = await fetchDetail(parsedUrl.id);
+  // }
+}
 
 export default Detail;

@@ -114,16 +114,13 @@ function createCatalogTemplate(catalogs) {
   `;
 }
 
-const init = async () => {
-  const catalogListContainer = document.getElementById('catalogListContainer');
-  const catalog = await fetchCatalog();
-  // console.log(catalog.restaurants);
-  catalogListContainer.innerHTML = createCatalogTemplate(catalog.restaurants);
-};
+class Detail {
+  constructor(content) {
+    this.content = content;
+  }
 
-const Detail = {
-  async render() {
-    return `
+  async init() {
+    this.content.innerHTML = `
     <header class="hero">
         <img src="/images/heros/hero-image_2.jpg" alt="Background Makanan" />
         <div class="content">
@@ -136,12 +133,12 @@ const Detail = {
         </div>
       </header>
     <main id="catalogListContainer" class="main">Main Page</main>`;
-  },
 
-  async afterRender() {
-    // Fungsi ini akan dipanggil setelah render()
-    init();
-  },
-};
+    const catalogListContainer = document.getElementById('catalogListContainer');
+    const catalog = await fetchCatalog();
+    // console.log(catalog.restaurants);
+    catalogListContainer.innerHTML = createCatalogTemplate(catalog.restaurants);
+  }
+}
 
 export default Detail;

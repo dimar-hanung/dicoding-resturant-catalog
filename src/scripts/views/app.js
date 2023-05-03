@@ -30,14 +30,17 @@ class App {
     const url = UrlParser.parseActiveUrlWithCombiner();
     console.log('url2', url);
 
-    const page = routes[url];
+    const page = new routes[url](this._content);
 
     if (page.beforeRender) {
       await page.beforeRender();
     }
 
-    this._content.innerHTML = await page.render();
-    await page.afterRender();
+    await page.init();
+
+    if (page.afterRender) {
+      await page.afterRender();
+    }
   }
 }
 
