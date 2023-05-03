@@ -12,29 +12,31 @@
 
 .navbar {
   all: unset;
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
   left: 0;
   top: 0;
   z-index: 20;
-  padding: 1rem;
+  padding: 0 1rem;
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+  background: #1e1e1e;
+  /* background: linear-gradient(45deg, #0c0c0c, #000014); */
 }
 .navbar ul {
   display: flex;
-  gap: 0.5rem;
+  /* gap: 0.5rem; */
   justify-content: end;
 }
 
 .navbar ul li {
   all: unset;
-  padding: 0 1rem;
-  border: solid 1px #ffffff;
-  border-radius: 100px;
-  transition: all ease 0.3s;
+  /* padding: 0 1rem; */
+  /* border: solid 1px #ffffff; */
+  /* border-radius: 100px; */
+  /* transition: all ease 0.3s; */
   display: grid;
   place-items: center;
 }
@@ -49,9 +51,11 @@
 }
 
 .navbar ul li a:focus {
-  all: unset;
-  display: block;
-  background: transparent;
+  /* all: unset; */
+  transform: none;
+  background: none;
+  display: grid;
+  place-items: center;
   color: #e6e600;
   text-decoration: underline;
 }
@@ -64,4 +68,88 @@
 .catalog {
   display: grid;
   grid-template-rows: auto 1fr;
+}
+
+.detail__header {
+  display: flex;
+  gap: 1rem;
+}
+
+.detail__header > section {
+  flex: 1;
+}
+
+.detail__header dt {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 1rem;
+}
+
+.detail__header dd {
+  font-size: 1rem;
+  margin-top: 0.25rem;
+  /* font-weight: 600; */
+  /* color: #ffffff; */
+  /* margin: 1rem 0; */
+}
+
+.detail__header > section > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.menu h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 1rem 0;
+}
+
+.menu h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 1rem 0;
+}
+
+.menu__list ul li {
+  list-style: none;
+  border-radius: 0.25rem;
+  transition: all ease 0.3s;
+  /* cursor: pointer; */
+
+  padding: 1rem;
+  margin: 0.5rem 0;
+  /* create dark background flat color */
+  background: #1e1e1e;
+}
+
+.menu__list ul li:hover {
+  background: #222222;
+}
+
+.review__item {
+  border-radius: 0.5rem;
+  background: #1e1e1e;
+  margin-top: 1.5rem;
+}
+
+.review__item__header {
+  width: 100%;
+  border-radius: 0.5rem 0.5rem 0 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  background: #353535;
+  padding: 1rem;
+}
+
+.review__item > p {
+  padding: 1rem;
+  border-radius: 0.5rem;
+
+  margin-top: 0.5rem;
 }

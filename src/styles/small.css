@@ -218,7 +218,7 @@
 }
 
 .catalog__bookmark:hover::before {
-  content: "Tambahkan Favorit";
+  content: 'Tambahkan Favorit';
   position: absolute;
   top: 0;
   left: 50%;
@@ -277,4 +277,17 @@
   border: solid 2px #ffffff;
   color: white;
   background: transparent;
+}
+
+.link {
+  font-size: 1.25rem;
+  display: inline-block;
+  padding: 1rem 0;
+  background: #ffffff;
+  padding: 0.5rem;
+  color: #000000;
+  border-radius: 0.5rem;
+  margin: 4px 0px;
+  border: solid 2px transparent;
+  transition: all ease 0.3s;
 }

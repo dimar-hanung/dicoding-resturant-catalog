@@ -11,11 +11,11 @@
     <title>DapurKota - Katalog Restoran</title>
   </head>
   <body>
-    <div class="navbar__overlay"></div>
+    <div id="navbarOverlay" class="navbar__overlay"></div>
     <button
       aria-label="Navbar Toggle"
       class="navbar__toggle-btn"
-      onclick="toggleNavbar()"
+      id="navbarButton"
     >
       <svg
         width="30px"
@@ -47,34 +47,28 @@
     <a href="#maincontent" class="skip-link">Menuju ke konten</a>
 
     <div class="container">
-      <nav class="navbar">
+      <nav class="navbar" id="drawer">
         <div class="navbar__brand">
-          <img src="./images/logo.png" alt="Logo DapurKota" />
+          <img src="/images/logo.png" alt="Logo DapurKota" />
         </div>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Favorite</a></li>
-          <li><a href="https://dimarhanung.dev" target="_blank">About</a></li>
+          <li><a is="router-link" href="/">Home</a></li>
+          <li>
+            <a is="router-link" href="/favorite">Favorite</a>
+          </li>
+          <li>
+            <a href="https://dimarhanung.dev" target="_blank">About</a>
+          </li>
         </ul>
       </nav>
 
-      <header class="hero">
-        <img src="./images/heros/hero-image_2.jpg" alt="Background Makanan" />
-        <div class="content">
-          <h1>DapurKota</h1>
-          <hr />
-          <p>
-            Cicipi Berbagai Hidangan di Seluruh Kota, Hanya dengan Beberapa
-            Sentuhan! 🍽️
-          </p>
-        </div>
-      </header>
-
-      <main id="maincontent" class="main">
-        <section id="catalogListContainer"></section>
-      </main>
+      <div id="maincontent">
+        <!-- <section id="catalogListContainer"></section> -->
+      </div>
 
       <footer class="footer">
+        <!-- <router-link class="link" src="/favorite"><div>loh</div></router-link> -->
+        <!-- <router-link src="/detail"><div>loh</div></router-link> -->
         <p>
           Made with ❤️ by
           <a href="https://dimarhanung.dev" target="_blank">Dimar Hanung</a>
@@ -84,155 +78,7 @@
     </div>
 
     <script>
-      function toggleNavbar() {
-        console.log("navbarHeight");
-        const navbar = document.querySelector(".navbar");
-        const navbarOverlay = document.querySelector(".navbar__overlay");
-        let displayTimeout;
-
-        // check if navbar is open
-        if (!navbar.classList.contains("--active")) {
-          navbarOverlay.style.display = "block";
-          navbarOverlay.classList.toggle("--active");
-          navbar.classList.toggle("--active");
-          return;
-        }
-
-        navbar.classList.remove("--active");
-        navbarOverlay.classList.remove("--active");
-        displayTimeout = setTimeout(() => {
-          navbarOverlay.style.display = "none";
-        }, 400);
-      }
-
-      const catalog = {
-        restaurants: [
-          {
-            id: "6c7bqjgi84kcowlqdz",
-            name: "Bring Your Phone Cafe",
-            description:
-              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.",
-            pictureId: "https://restaurant-api.dicoding.dev/images/medium/41",
-            city: "Medan",
-            rating: 4.6,
-          },
-          {
-            id: "ljx8i0qu2uckcowlqdz",
-            name: "Run The Gun",
-            description:
-              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.",
-            pictureId: "https://restaurant-api.dicoding.dev/images/medium/07",
-            city: "Bali",
-            rating: 4.6,
-          },
-          {
-            id: "fe8bbxoazddkcowlqdz",
-            name: "Pangsit Express",
-            description:
-              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.",
-            pictureId: "https://restaurant-api.dicoding.dev/images/medium/29",
-            city: "Ternate",
-            rating: 4.8,
-          },
-          {
-            id: "ik1zljmlf68kcowlqdz",
-            name: "Ducky Duck",
-            description:
-              "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.",
-            pictureId: "https://restaurant-api.dicoding.dev/images/medium/38",
-            city: "Malang",
-            rating: 4.7,
-          },
-          {
-            id: "9jpuzkm6n6jkcowlqdz",
-            name: "Kafein",
-            description:
-              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.",
-            pictureId: "https://restaurant-api.dicoding.dev/images/medium/40",
-            city: "Bali",
-            rating: 3.8,
-          },
-          {
-            id: "cpl5jpsnuqkkcowlqdz",
-            name: "Makan mudah",
-            description:
-              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.",
-            pictureId: "https://restaurant-api.dicoding.dev/images/medium/08",
-            city: "Malang",
-            rating: 4.6,
-          },
-          {
-            id: "iqtf9hmdzvbkcowlqdz",
-            name: "Saya Suka",
-            description:
-              "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.",
-            pictureId: "https://restaurant-api.dicoding.dev/images/medium/32",
-            city: "Surabaya",
-            rating: 3.6,
-          },
-          {
-            id: "8i06gqcc2dpkcowlqdz",
-            name: "Gigitan Cepat",
-            description:
-              "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.",
-            pictureId: "https://restaurant-api.dicoding.dev/images/medium/45",
-            city: "Aceh",
-            rating: 4,
-          },
-          {
-            id: "wf5o19xhxxkcowlqdz",
-            name: "Fairy Cafe",
-            description:
-              "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.",
-            pictureId: "https://restaurant-api.dicoding.dev/images/medium/04",
-            city: "Malang",
-            rating: 3.9,
-          },
-        ],
-      };
-
-      catalogListContainer.innerHTML = createCatalogTemplate(
-        catalog.restaurants
-      );
-      function createCatalogTemplate(catalogs) {
-        return `
-        ${catalogs
-          .map((catalog) => {
-            return `
-          <div class="catalog">
-            <div class="catalog__header" tabindex="0">
-              <img
-                class="catalog__header__poster"
-                src="${catalog.pictureId}"
-                alt="Foto Lokasi ${catalog.name}"
-              />
-
-              <div class="catalog__header__title">
-                <div>
-                  <h1>${catalog.name}</h1>
-                  <p>${catalog.city}</p>
-                </div>
-
-                <button aria-label="Add ${name} to favorite" class="catalog__bookmark">
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256" width="44px" height="44px" fill-rule="nonzero"><g class="catalog__bookmark__stroke" fill-rule="nonzero" stroke="#000000" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path transform="scale(5.12,5.12)" d="M37,48c-0.17578,0 -0.34766,-0.04687 -0.50391,-0.13672l-11.49609,-6.70703l-11.49609,6.70703c-0.30859,0.17969 -0.69141,0.18359 -1,0.00391c-0.3125,-0.17969 -0.50391,-0.50781 -0.50391,-0.86719v-44c0,-0.55078 0.44922,-1 1,-1h24c0.55469,0 1,0.44922 1,1v44c0,0.35938 -0.19141,0.6875 -0.50391,0.86719c-0.15234,0.08984 -0.32422,0.13281 -0.49609,0.13281z" id="strokeMainSVG"></path></g><g class="catalog__bookmark__fill" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M37,48c-0.17578,0 -0.34766,-0.04687 -0.50391,-0.13672l-11.49609,-6.70703l-11.49609,6.70703c-0.30859,0.17969 -0.69141,0.18359 -1,0.00391c-0.3125,-0.17969 -0.50391,-0.50781 -0.50391,-0.86719v-44c0,-0.55078 0.44922,-1 1,-1h24c0.55469,0 1,0.44922 1,1v44c0,0.35938 -0.19141,0.6875 -0.50391,0.86719c-0.15234,0.08984 -0.32422,0.13281 -0.49609,0.13281z"></path></g></g></svg>
-                </button>
-              </div>
-
-              <div class="catalog__header__rating">
-                <p>⭐️<span class="catalog__header__rating__score">${catalog.rating}</span></p>
-              </div>
-            </div>
-
-            <div class="catalog__description" tabindex="0">
-              <p>${catalog.description}</p>
-            </div>
-
-          </div>
-            `;
-          })
-          .join("")}
-      `;
-      }
+      // fetch data from https://restaurant-api.dicoding.dev/
     </script>
   </body>
 </html>
