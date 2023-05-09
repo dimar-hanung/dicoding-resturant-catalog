@@ -33,7 +33,7 @@ class Detail {
       const restaurantData = await new Promise((resolve, reject) => {
         const r = restaurantStore.get(parsedUrl.id);
         r.onsuccess = () => {
-          resolve(restaurantStore.result);
+          resolve(r.result);
         };
         r.onerror = () => {
           reject(new Error('Restaurant not found'));
@@ -41,16 +41,18 @@ class Detail {
       });
 
       if (restaurantData) {
-        this.data.restaurant = restaurantData;
+        this.data.restaurant = { ...restaurantData, isFavorite: restaurantData.isFavorite };
+
         this.render();
       }
 
       this.data = await fetchDetail(parsedUrl.id);
 
-      if (!restaurantData) {
+      if (this.data) {
         db.transaction('restaurantsDetail', 'readwrite')
           .objectStore('restaurantsDetail')
-          .put(this.data.restaurant);
+          .put({ ...this.data.restaurant, isFavorite: restaurantData.isFavorite });
+        this.data.restaurant.isFavorite = restaurantData.isFavorite;
       }
 
       this.render();
@@ -68,7 +70,7 @@ class Detail {
           <section id="detail">
             <header class="flex w-full justify-between">
               <h2>${this.data.restaurant.name}</h2>
-              <icon-favorite></icon-favorite>
+              <icon-favorite is-favorite="${this.data.restaurant.isFavorite}"></icon-favorite>
             </header>
             <dl>
               <dt>🏢 City</dt>

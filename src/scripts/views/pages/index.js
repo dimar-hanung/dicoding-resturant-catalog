@@ -36,7 +36,7 @@ function createCatalogTemplate(catalogs) {
                   <p>${catalog.city}</p>
                 </div>
 
-                <icon-favorite aria-label="Add ${catalog.name} to favorite"></icon-favorite>                
+                
               </a>
 
               <div class="catalog__header__rating">
