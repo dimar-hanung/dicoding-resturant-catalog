@@ -1,5 +1,6 @@
 import UrlParser from '../../routes/url-parser';
 import Api from '../../utils/api';
+import '../../components/icon-favorite';
 
 const fetchDetail = async (id) => {
   const response = await Api.fetch({
@@ -47,7 +48,9 @@ class Detail {
       this.data = await fetchDetail(parsedUrl.id);
 
       if (!restaurantData) {
-        db.transaction('restaurantsDetail', 'readwrite').objectStore('restaurantsDetail').put(this.data.restaurant);
+        db.transaction('restaurantsDetail', 'readwrite')
+          .objectStore('restaurantsDetail')
+          .put(this.data.restaurant);
       }
 
       this.render();
@@ -63,7 +66,10 @@ class Detail {
   this.data.restaurant.pictureId
 }" /> </section>
           <section id="detail">
-            <h2>${this.data.restaurant.name}</h2>
+            <header class="flex w-full justify-between">
+              <h2>${this.data.restaurant.name}</h2>
+              <icon-favorite></icon-favorite>
+            </header>
             <dl>
               <dt>🏢 City</dt>
               <dd>${this.data.restaurant.city}</dd>
@@ -126,6 +132,45 @@ class Detail {
         </section>
       </main>
     `;
+
+    const favoriteButton = document.querySelector('icon-favorite');
+    favoriteButton.addEventListener('click', async () => {
+      // set isFavorite to true in indexedDB by id
+      // get id from url and set isFavorite to true
+      const parsedUrl = UrlParser.parseActiveUrlWithoutCombiner();
+      const openRequest = indexedDB.open('dapurKota', 1);
+      openRequest.onsuccess = async (event) => {
+        const db = event.target.result;
+        const restaurants = db.transaction('restaurantsDetail', 'readwrite');
+        const restaurantStore = restaurants.objectStore('restaurantsDetail');
+        const restaurantData = await new Promise((resolve, reject) => {
+          const r = restaurantStore.get(parsedUrl.id);
+          console.log('r', r);
+          r.onsuccess = () => {
+            console.log('restaurantStore', r);
+            resolve(r.result);
+          };
+          r.onerror = () => {
+            reject(new Error('Restaurant not found'));
+          };
+        });
+
+        console.log('restaurantData', restaurantData);
+
+        restaurantData.isFavorite = !restaurantData.isFavorite;
+        if (restaurantData.isFavorite) {
+          favoriteButton.setAttribute('is-favorite', true);
+        } else {
+          favoriteButton.setAttribute('is-favorite', false);
+        }
+
+        db.transaction('restaurantsDetail', 'readwrite')
+          .objectStore('restaurantsDetail')
+          .put(restaurantData);
+
+        favoriteButton.isFavorite = restaurantData.isFavorite;
+      };
+    });
   }
 
   // async beforeRender() {

@@ -1,0 +1,11 @@
+.flex {
+  display: flex;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.justify-between {
+  justify-content: space-between;
+}

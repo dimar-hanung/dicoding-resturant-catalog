@@ -2,6 +2,7 @@
 @import url(./medium.css) screen and (min-width: 576px);
 @import url(./large.css) screen and (min-width: 768px);
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+@import url(./utils.css);
 
 a {
   color: inherit;
@@ -23,4 +24,5 @@ body {
   background: #0e0e0e;
   color: #ccc;
   font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
 }

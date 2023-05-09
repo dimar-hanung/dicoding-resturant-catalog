@@ -3,22 +3,22 @@
 ## 📝 Kriteria
 
 ### Halaman Utama (Daftar Restoran)
-- [ ] Menampilkan daftar restoran yang datanya bersumber dari API https://restaurant-api.dicoding.dev/. Silakan lihat dokumentasinya pada halaman tersebut.
-- [ ] Wajib menampilkan nama, gambar dan minimal salah satu diantara kota, rating, dan atau deskripsi pada restoran.
-- [ ] Terdapat tautan/CTA yang mengarah ke detail restoran pada tiap itemnya.
-- [ ] Hero elemen tetap dipertahankan.
+- [x] Menampilkan daftar restoran yang datanya bersumber dari API https://restaurant-api.dicoding.dev/. Silakan lihat dokumentasinya pada halaman tersebut.
+- [x] Wajib menampilkan nama, gambar dan minimal salah satu diantara kota, rating, dan atau deskripsi pada restoran.
+- [x] Terdapat tautan/CTA yang mengarah ke detail restoran pada tiap itemnya.
+- [x] Hero elemen tetap dipertahankan.
 
 ### Halaman Detail Restoran
-- [ ] Menampilkan detail dari restoran yang dipilih dari halaman utama (daftar restoran) atau halaman favorit restoran.
+- [x] Menampilkan detail dari restoran yang dipilih dari halaman utama (daftar restoran) atau halaman favorit restoran.
 - [ ] Pada halaman detail restoran harus terdapat:
-   - [ ] Nama restoran
-   - [ ] Gambar
-   - [ ] Alamat
-   - [ ] Kota
-   - [ ] Deskripsi
-   - [ ] Menu Makanan
-   - [ ] Menu Minuman
-   - [ ] Customer Reviews
+   - [x] Nama restoran
+   - [x] Gambar
+   - [x] Alamat
+   - [x] Kota
+   - [x] Deskripsi
+   - [x] Menu Makanan
+   - [x] Menu Minuman
+   - [x] Customer Reviews
 - [ ] Terdapat tombol favorite untuk memasukkan atau menghapus restoran favorit dari database (gunakan IndexedDB).
 
 ### Halaman Daftar Restoran Favorit
