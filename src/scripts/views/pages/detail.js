@@ -41,7 +41,7 @@ class Detail {
       });
 
       if (restaurantData) {
-        this.data.restaurant = { ...restaurantData, isFavorite: restaurantData.isFavorite };
+        this.data.restaurant = { ...restaurantData, isFavorite: restaurantData?.isFavorite };
 
         this.render();
       }
@@ -51,8 +51,8 @@ class Detail {
       if (this.data) {
         db.transaction('restaurantsDetail', 'readwrite')
           .objectStore('restaurantsDetail')
-          .put({ ...this.data.restaurant, isFavorite: restaurantData.isFavorite });
-        this.data.restaurant.isFavorite = restaurantData.isFavorite;
+          .put({ ...this.data.restaurant, isFavorite: restaurantData?.isFavorite });
+        this.data.restaurant.isFavorite = restaurantData?.isFavorite;
       }
 
       this.render();
@@ -70,7 +70,7 @@ class Detail {
           <section id="detail">
             <header class="flex w-full justify-between">
               <h2>${this.data.restaurant.name}</h2>
-              <icon-favorite is-favorite="${this.data.restaurant.isFavorite}"></icon-favorite>
+              <icon-favorite is-favorite="${this.data.restaurant?.isFavorite}"></icon-favorite>
             </header>
             <dl>
               <dt>🏢 City</dt>
@@ -159,7 +159,9 @@ class Detail {
 
         console.log('restaurantData', restaurantData);
 
-        restaurantData.isFavorite = !restaurantData.isFavorite;
+        if (restaurantData) {
+          restaurantData.isFavorite = !restaurantData.isFavorite;
+        }
         if (restaurantData.isFavorite) {
           favoriteButton.setAttribute('is-favorite', true);
         } else {
@@ -170,7 +172,7 @@ class Detail {
           .objectStore('restaurantsDetail')
           .put(restaurantData);
 
-        favoriteButton.isFavorite = restaurantData.isFavorite;
+        // favoriteButton.isFavorite = restaurantData.isFavorite;
       };
     });
   }
