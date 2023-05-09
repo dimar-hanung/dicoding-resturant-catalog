@@ -6,27 +6,84 @@ const fetchDetail = async (id) => {
   // return responseJson;
 };
 
-const createDetailTemplate = (detail) => `
+class Page {
+  constructor(content) {
+    this.content = content;
+    this.restaurants = [];
+  }
 
-  <div class="detail">
-  ${detail}
-  </div>`;
-
-const Detail = {
-  async render() {
-    console.log('favorite');
+  static createCatalogTemplate(catalogs) {
     return `
-            <h2>Favorite Page</h2>
-          `;
-  },
+      ${catalogs
+    .map(
+      (catalog) => `
+        
+            <div class="catalog">
+              <div class="catalog__header" tabindex="0">
+                <img
+                  class="catalog__header__poster"
+                  src="https://restaurant-api.dicoding.dev/images/medium/${catalog.pictureId}"
+                  alt="Foto Lokasi ${catalog.name}"
+                />
+  
+                <a is="router-link" class="catalog__header__title" href="/detail/${catalog.id}">
+                  <div>
+                    <h1>${catalog.name}</h1>
+                    <p>${catalog.city}</p>
+                  </div>
+  
+                  
+                </a>
+  
+                <div class="catalog__header__rating">
+                  <p>
+                    ⭐️<span class="catalog__header__rating__score"
+                      >${catalog.rating}</span
+                    >
+                  </p>
+                </div>
+              </div>
+  
+              <div class="catalog__description" tabindex="0">
+                <p>${catalog.description}</p>
+              </div>
+            </div>
+          `,
+    )
+    .join('')}
+    `;
+  }
 
-  async afterRender() {
-    // Fungsi ini akan dipanggil setelah render()
-    const parsedUrl = UrlParser.parseActiveUrlWithoutCombiner();
-    const detail = await fetchDetail(parsedUrl.id);
+  getFavorites() {
+    // get favorites from indexedDB
+    const openRequest = indexedDB.open('dapurKota', 1);
+    openRequest.onsuccess = async (event) => {
+      const db = event.target.result;
+      const restaurants = db.transaction('restaurantsDetail', 'readwrite');
+      const restaurantStore = restaurants.objectStore('restaurantsDetail');
 
-    createDetailTemplate(detail);
-  },
-};
+      const restaurantData = await new Promise((resolve, reject) => {
+        const r = restaurantStore.getAll();
+        r.onsuccess = () => {
+          resolve(r.result);
+          this.restaurants = r.result;
+          this.render();
+        };
+        r.onerror = () => {
+          reject(new Error('Restaurant not found'));
+        };
+      });
+      console.log('restaurantData', restaurantData);
+    };
+  }
 
-export default Detail;
+  async init() {
+    this.getFavorites();
+  }
+
+  async render() {
+    this.content.innerHTML = `<main id="catalogListContainer" class="main">${Page.createCatalogTemplate(this.restaurants)}</main>`;
+  }
+}
+
+export default Page;
