@@ -78,7 +78,24 @@
     </div>
 
     <script>
-      // fetch data from https://restaurant-api.dicoding.dev/
+      console.log('Hello from index.html');
+      if ('serviceWorker' in navigator) {
+        console.log('Service Worker is supported');
+        window.addEventListener('load', function () {
+          console.log('Service Worker is loading...');
+          navigator.serviceWorker.register('/service-worker.js').then(
+            function (registration) {
+              console.log(
+                'ServiceWorker registration successful with scope: ',
+                registration.scope
+              );
+            },
+            function (err) {
+              console.log('ServiceWorker registration failed: ', err);
+            }
+          );
+        });
+      }
     </script>
   </body>
 </html>

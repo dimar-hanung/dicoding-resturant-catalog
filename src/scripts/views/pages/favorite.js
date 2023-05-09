@@ -1,11 +1,5 @@
 import UrlParser from '../../routes/url-parser';
 
-const fetchDetail = async (id) => {
-  // const response = await fetch(`https://api.football-data.org/v2/teams/${id}`);
-  // const responseJson = await response.json();
-  // return responseJson;
-};
-
 class Page {
   constructor(content) {
     this.content = content;

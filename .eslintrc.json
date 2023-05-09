@@ -11,7 +11,8 @@
       "files": ["*.js"],
       "rules": {
         "no-underscore-dangle": "off",
-        "linebreak-style": "off"
+        "linebreak-style": "off",
+        "no-restricted-globals": "off"
       }
     }
   ],

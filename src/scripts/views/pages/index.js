@@ -97,12 +97,14 @@ class Detail {
         catalogListContainer.innerHTML = createCatalogTemplate(data);
       }
       const catalog = await fetchCatalog();
-      catalog.restaurants.forEach((restaurant) => {
-        db.transaction('restaurantsHeader', 'readwrite')
-          .objectStore('restaurantsHeader')
-          .put(restaurant);
-      });
-      catalogListContainer.innerHTML = createCatalogTemplate(catalog.restaurants);
+      if (catalog) {
+        catalog.restaurants.forEach((restaurant) => {
+          db.transaction('restaurantsHeader', 'readwrite')
+            .objectStore('restaurantsHeader')
+            .put(restaurant);
+        });
+        catalogListContainer.innerHTML = createCatalogTemplate(catalog.restaurants);
+      }
     };
   }
 }

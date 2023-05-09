@@ -10,7 +10,7 @@
 
 ### Halaman Detail Restoran
 - [x] Menampilkan detail dari restoran yang dipilih dari halaman utama (daftar restoran) atau halaman favorit restoran.
-- [ ] Pada halaman detail restoran harus terdapat:
+- [x] Pada halaman detail restoran harus terdapat:
    - [x] Nama restoran
    - [x] Gambar
    - [x] Alamat
@@ -19,13 +19,13 @@
    - [x] Menu Makanan
    - [x] Menu Minuman
    - [x] Customer Reviews
-- [ ] Terdapat tombol favorite untuk memasukkan atau menghapus restoran favorit dari database (gunakan IndexedDB).
+- [x] Terdapat tombol favorite untuk memasukkan atau menghapus restoran favorit dari database (gunakan IndexedDB).
 
 ### Halaman Daftar Restoran Favorit
-- [ ] Halaman Daftar Restoran dapat diakses melalui menu navigasi favorit.
-- [ ] Menampilkan restoran yang difavoritkan oleh pengguna (data diambil dari indexedDB).
-- [ ] Wajib menampilkan nama, gambar dan minimal salah satu diantara kota, rating, dan atau deskripsi pada restoran.
-- [ ] Terdapat tautan/CTA yang mengarah ke detail restoran pada tiap itemnya.
+- [x] Halaman Daftar Restoran dapat diakses melalui menu navigasi favorit.
+- [x] Menampilkan restoran yang difavoritkan oleh pengguna (data diambil dari indexedDB).
+- [x] Wajib menampilkan nama, gambar dan minimal salah satu diantara kota, rating, dan atau deskripsi pada restoran.
+- [x] Terdapat tautan/CTA yang mengarah ke detail restoran pada tiap itemnya.
 
 ### Native Capability
 - [ ] Aplikasi dapat diakses dalam keadaan offline tanpa ada aset yang gagal dimuat, termasuk data yang didapatkan dari API. Anda bebas menggunakan strategi caching apapun, bahkan menggunakan workbox.
