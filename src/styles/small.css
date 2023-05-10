@@ -295,3 +295,10 @@ icon-favorite[is-favorite='true'] .icon__favorite__fill {
   border: solid 2px transparent;
   transition: all ease 0.3s;
 }
+
+.delete__favorite {
+  padding: 1rem;
+  display: block;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}

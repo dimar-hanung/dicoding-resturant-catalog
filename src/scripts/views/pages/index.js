@@ -9,8 +9,8 @@ class Page {
   static createCatalogTemplate(catalogs) {
     return `
       ${catalogs
-        .map(
-          (catalog) => `
+    .map(
+      (catalog) => `
             <div class="catalog">
               <div class="catalog__header" tabindex="0">
                 <img
@@ -39,9 +39,9 @@ class Page {
                 <p>${catalog.description}</p>
               </div>
             </div>
-          `
-        )
-        .join('')}
+          `,
+    )
+    .join('')}
     `;
   }
 
@@ -69,7 +69,7 @@ class Page {
     <main id="catalogListContainer" class="main"></main>`;
 
     const catalogListContainer = document.getElementById(
-      'catalogListContainer'
+      'catalogListContainer',
     );
 
     const openRequest = indexedDB.open('dapurKota', 1);
@@ -95,7 +95,7 @@ class Page {
             .put(restaurant);
         });
         catalogListContainer.innerHTML = Page.createCatalogTemplate(
-          catalog.restaurants
+          catalog.restaurants,
         );
       }
     };
