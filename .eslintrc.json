@@ -23,5 +23,13 @@
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module"
+  },
+  "plugins": ["import"],
+  "rules": {
+    "import/no-unresolved": "error",
+    "import/named": "error",
+    "import/default": "error",
+    "import/namespace": "error",
+    "import/export": "error"
   }
 }
