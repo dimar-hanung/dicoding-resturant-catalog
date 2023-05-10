@@ -27,8 +27,6 @@ const app = new App({
 const originalPushState = window.history.pushState;
 const stateChangeEvent = new Event('statechange');
 
-// init db
-
 const openRequest = indexedDB.open('dapurKota', 1);
 openRequest.onupgradeneeded = () => {
   const db = openRequest.result;
@@ -40,9 +38,7 @@ openRequest.onupgradeneeded = () => {
   }
 };
 
-//
-
-let lastUrl = location.href; // Remember the current URL
+let lastUrl = location.href;
 window.history.pushState = function pushStateHandler(...args) {
   originalPushState.apply(this, args);
   window.dispatchEvent(stateChangeEvent);
@@ -57,12 +53,9 @@ window.addEventListener('popstate', () => {
   const newUrlSansHash = newUrl.split('#')[0];
 
   if (oldUrlSansHash !== newUrlSansHash) {
-    // The "real" history changed, not just the hash
     app.renderPage();
-    // Handle the event here...
   }
 
-  // Update the remembered URL
   lastUrl = newUrl;
 });
 
