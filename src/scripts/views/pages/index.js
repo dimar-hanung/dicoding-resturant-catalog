@@ -66,9 +66,11 @@ class Page {
           </p>
         </div>
       </header>
-    <main id="catalogListContainer" class="main">Main Page</main>`;
+    <main id="catalogListContainer" class="main"></main>`;
 
-    const catalogListContainer = document.getElementById('catalogListContainer');
+    const catalogListContainer = document.getElementById(
+      'catalogListContainer',
+    );
 
     const openRequest = indexedDB.open('dapurKota', 1);
 
@@ -92,7 +94,9 @@ class Page {
             .objectStore('restaurantsHeader')
             .put(restaurant);
         });
-        catalogListContainer.innerHTML = Page.createCatalogTemplate(catalog.restaurants);
+        catalogListContainer.innerHTML = Page.createCatalogTemplate(
+          catalog.restaurants,
+        );
       }
     };
   }

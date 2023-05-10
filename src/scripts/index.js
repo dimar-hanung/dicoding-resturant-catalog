@@ -42,15 +42,32 @@ openRequest.onupgradeneeded = () => {
 
 //
 
+let lastUrl = location.href; // Remember the current URL
 window.history.pushState = function pushStateHandler(...args) {
   originalPushState.apply(this, args);
   window.dispatchEvent(stateChangeEvent);
+  lastUrl = location.href;
 };
+
 window.addEventListener('popstate', () => {
-  app.renderPage();
+  const newUrl = location.href;
+
+  // Remove hashes and compare
+  const oldUrlSansHash = lastUrl.split('#')[0];
+  const newUrlSansHash = newUrl.split('#')[0];
+
+  if (oldUrlSansHash !== newUrlSansHash) {
+    // The "real" history changed, not just the hash
+    app.renderPage();
+    // Handle the event here...
+  }
+
+  // Update the remembered URL
+  lastUrl = newUrl;
 });
 
 window.addEventListener('statechange', () => {
+  lastUrl = location.href;
   app.renderPage();
 });
 
