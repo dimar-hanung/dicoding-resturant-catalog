@@ -30,10 +30,10 @@
 ### Native Capability
 - [x] Aplikasi dapat diakses dalam keadaan offline tanpa ada aset yang gagal dimuat, termasuk data yang didapatkan dari API. Anda bebas menggunakan strategi caching apapun, bahkan menggunakan workbox.
 - [x] Aplikasi harus menampilkan icon Add to Home Screen.
-- [ ] Aplikasi memiliki custom icon yang ditampilkan pada home screen dan splash screen.
+- [x] Aplikasi memiliki custom icon yang ditampilkan pada home screen dan splash screen.
 
 ### Code Quality
-- [ ] Menggunakan ESLint sebagai linter ketika menuliskan kode JavaScript. Harap lampirkan berkas konfigurasi ESLint ya.
+- [x] Menggunakan ESLint sebagai linter ketika menuliskan kode JavaScript. Harap lampirkan berkas konfigurasi ESLint ya.
 - [ ] Menerapkan salah satu style guide baik itu Google JavaScript Code Style, AirBnB JavaScript Code Style, atau StandardJS Code Style.
 - [ ] Periksa kembali sebelum mengirimkan submission, apakah project yang Anda kirimkan sesuai dengan kriteria yang ditetapkan atau tidak, ditandai dengan tidak adanya satupun error ketika menjalankan eslint.
 

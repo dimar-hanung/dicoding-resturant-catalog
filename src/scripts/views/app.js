@@ -21,14 +21,10 @@ class App {
       content: this._content,
       callback: this._callback,
     });
-
-    // kita bisa menginisiasikan komponen lain bila ada
   }
 
   async renderPage() {
-    // console.log('renderPage');
     const url = UrlParser.parseActiveUrlWithCombiner();
-    console.log('url2', url);
 
     const page = new routes[url](this._content);
 

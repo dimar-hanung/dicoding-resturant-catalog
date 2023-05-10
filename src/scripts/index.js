@@ -42,19 +42,18 @@ openRequest.onupgradeneeded = () => {
 
 //
 
-window.history.pushState = function (state, title, url) {
-  originalPushState.apply(this, arguments);
+window.history.pushState = function pushStateHandler(...args) {
+  originalPushState.apply(this, args);
   window.dispatchEvent(stateChangeEvent);
 };
 window.addEventListener('popstate', () => {
   app.renderPage();
 });
 
-window.addEventListener('statechange', (state, title, url) => {
+window.addEventListener('statechange', () => {
   app.renderPage();
 });
 
 window.addEventListener('load', () => {
-  console.log('load');
   app.renderPage();
 });

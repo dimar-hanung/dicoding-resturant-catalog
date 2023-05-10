@@ -1,5 +1,3 @@
-import UrlParser from '../../routes/url-parser';
-
 class Page {
   constructor(content) {
     this.content = content;
@@ -11,7 +9,6 @@ class Page {
       ${catalogs
     .map(
       (catalog) => `
-        
             <div class="catalog">
               <div class="catalog__header" tabindex="0">
                 <img
@@ -25,8 +22,6 @@ class Page {
                     <h1>${catalog.name}</h1>
                     <p>${catalog.city}</p>
                   </div>
-  
-                  
                 </a>
   
                 <div class="catalog__header__rating">
@@ -56,7 +51,7 @@ class Page {
       const restaurants = db.transaction('restaurantsDetail', 'readwrite');
       const restaurantStore = restaurants.objectStore('restaurantsDetail');
 
-      const restaurantData = await new Promise((resolve, reject) => {
+      await new Promise((resolve, reject) => {
         const r = restaurantStore.getAll();
         r.onsuccess = () => {
           resolve(r.result);
@@ -67,7 +62,6 @@ class Page {
           reject(new Error('Restaurant not found'));
         };
       });
-      console.log('restaurantData', restaurantData);
     };
   }
 

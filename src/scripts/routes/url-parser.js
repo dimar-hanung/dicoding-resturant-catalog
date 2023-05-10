@@ -7,7 +7,6 @@ const UrlParser = {
 
   parseActiveUrlWithoutCombiner() {
     const url = window.location.pathname.toLowerCase();
-    console.log('url', url);
     return this._urlSplitter(url);
   },
 
