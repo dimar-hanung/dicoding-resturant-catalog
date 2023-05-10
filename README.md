@@ -28,8 +28,8 @@
 - [x] Terdapat tautan/CTA yang mengarah ke detail restoran pada tiap itemnya.
 
 ### Native Capability
-- [ ] Aplikasi dapat diakses dalam keadaan offline tanpa ada aset yang gagal dimuat, termasuk data yang didapatkan dari API. Anda bebas menggunakan strategi caching apapun, bahkan menggunakan workbox.
-- [ ] Aplikasi harus menampilkan icon Add to Home Screen.
+- [x] Aplikasi dapat diakses dalam keadaan offline tanpa ada aset yang gagal dimuat, termasuk data yang didapatkan dari API. Anda bebas menggunakan strategi caching apapun, bahkan menggunakan workbox.
+- [x] Aplikasi harus menampilkan icon Add to Home Screen.
 - [ ] Aplikasi memiliki custom icon yang ditampilkan pada home screen dan splash screen.
 
 ### Code Quality

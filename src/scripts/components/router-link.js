@@ -20,8 +20,6 @@ class RouterLink extends HTMLAnchorElement {
   }
 
   connectedCallback() {
-    console.log('connectedCallback', this.anchorTag);
-    // this.anchorTag.addEventListener('click', this.onClick);
     this.addEventListener('click', this.click.bind(this));
   }
 
@@ -34,7 +32,7 @@ class RouterLink extends HTMLAnchorElement {
     if (event.getModifierState('Control') || event.getModifierState('Meta')) return; // allow control-click or cmd-click (mac) to work as usual
     event?.preventDefault();
     window.history.pushState(null, null, this.href);
-    console.log(this.href);
+
     // do whatever you like here
   }
 }
