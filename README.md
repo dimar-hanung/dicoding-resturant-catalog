@@ -1,4 +1,46 @@
-# Dicoding Chellange - Katalog Restoran
+# Dicoding Chellange - Katalog Restoran ( Submission 2 )
+
+## 📝 Kriteria
+
+### Halaman Utama (Daftar Restoran)
+- [x] Menampilkan daftar restoran yang datanya bersumber dari API https://restaurant-api.dicoding.dev/. Silakan lihat dokumentasinya pada halaman tersebut.
+- [x] Wajib menampilkan nama, gambar dan minimal salah satu diantara kota, rating, dan atau deskripsi pada restoran.
+- [x] Terdapat tautan/CTA yang mengarah ke detail restoran pada tiap itemnya.
+- [x] Hero elemen tetap dipertahankan.
+
+### Halaman Detail Restoran
+- [x] Menampilkan detail dari restoran yang dipilih dari halaman utama (daftar restoran) atau halaman favorit restoran.
+- [x] Pada halaman detail restoran harus terdapat:
+   - [x] Nama restoran
+   - [x] Gambar
+   - [x] Alamat
+   - [x] Kota
+   - [x] Deskripsi
+   - [x] Menu Makanan
+   - [x] Menu Minuman
+   - [x] Customer Reviews
+- [x] Terdapat tombol favorite untuk memasukkan atau menghapus restoran favorit dari database (gunakan IndexedDB).
+
+### Halaman Daftar Restoran Favorit
+- [x] Halaman Daftar Restoran dapat diakses melalui menu navigasi favorit.
+- [x] Menampilkan restoran yang difavoritkan oleh pengguna (data diambil dari indexedDB).
+- [x] Wajib menampilkan nama, gambar dan minimal salah satu diantara kota, rating, dan atau deskripsi pada restoran.
+- [x] Terdapat tautan/CTA yang mengarah ke detail restoran pada tiap itemnya.
+
+### Native Capability
+- [x] Aplikasi dapat diakses dalam keadaan offline tanpa ada aset yang gagal dimuat, termasuk data yang didapatkan dari API. Anda bebas menggunakan strategi caching apapun, bahkan menggunakan workbox.
+- [x] Aplikasi harus menampilkan icon Add to Home Screen.
+- [x] Aplikasi memiliki custom icon yang ditampilkan pada home screen dan splash screen.
+
+### Code Quality
+- [x] Menggunakan ESLint sebagai linter ketika menuliskan kode JavaScript. Harap lampirkan berkas konfigurasi ESLint ya.
+- [ ] Menerapkan salah satu style guide baik itu Google JavaScript Code Style, AirBnB JavaScript Code Style, atau StandardJS Code Style.
+- [ ] Periksa kembali sebelum mengirimkan submission, apakah project yang Anda kirimkan sesuai dengan kriteria yang ditetapkan atau tidak, ditandai dengan tidak adanya satupun error ketika menjalankan eslint.
+
+### Pertahankan syarat submission sebelum nya
+ Seperti responsibilitas tampilan, aksesibilitas pada website, appbar, footer dan sebagainya.
+
+# Dicoding Chellange - Katalog Restoran ( Submission 1 )
 
 LIVE : https://dicoding-resturant-catalog.vercel.app/
 

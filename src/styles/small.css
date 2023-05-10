@@ -209,7 +209,7 @@
   transition: color ease 0.3s;
 }
 
-.catalog__bookmark {
+.icon__favorite {
   cursor: pointer;
   position: relative;
   background: transparent;
@@ -217,8 +217,8 @@
   color: #ffffff;
 }
 
-.catalog__bookmark:hover::before {
-  content: "Tambahkan Favorit";
+.icon__favorite:hover::before {
+  content: 'Tambahkan Favorit';
   position: absolute;
   top: 0;
   left: 50%;
@@ -229,23 +229,27 @@
   border-radius: 0.25rem;
 }
 
-.catalog__bookmark__stroke {
+.icon__favorite__stroke {
   stroke: #ffffff;
   fill: transparent;
   transition: all ease 0.2s;
 }
 
-.catalog__bookmark__fill {
+.icon__favorite__fill {
   fill: transparent;
   transition: all ease 0.2s;
 }
 
-.catalog__bookmark:hover .catalog__bookmark__fill {
+.icon__favorite:hover .icon__favorite__fill {
   fill: rgb(239, 85, 85);
 }
 
-.catalog__bookmark:hover .catalog__bookmark__stroke {
+.icon__favorite:hover .icon__favorite__stroke {
   stroke: rgb(239, 85, 85);
+}
+
+icon-favorite[is-favorite='true'] .icon__favorite__fill {
+  fill: rgb(85, 239, 111);
 }
 
 .footer {
@@ -277,4 +281,17 @@
   border: solid 2px #ffffff;
   color: white;
   background: transparent;
+}
+
+.link {
+  font-size: 1.25rem;
+  display: inline-block;
+  padding: 1rem 0;
+  background: #ffffff;
+  padding: 0.5rem;
+  color: #000000;
+  border-radius: 0.5rem;
+  margin: 4px 0px;
+  border: solid 2px transparent;
+  transition: all ease 0.3s;
 }
