@@ -1,4 +1,9 @@
 # Dicoding Chellange - Katalog Restoran ( Submission 2 )
+LIVE : https://dicoding-resturant-catalog.vercel.app/
+## 🔍 Detail
+- Dibanding menggunakan hash, saya menggunakan history fallback untuk routing.
+- Cache Strategy pada indexDB menggunakan Stale While Revalidate. yaitu mengambil data dari cache terlebih dahulu, kemudian mengambil data dari server. Jika data dari server berbeda dengan data yang ada di cache, maka data yang ada di cache akan diupdate.
+
 
 ## 📝 Kriteria
 
